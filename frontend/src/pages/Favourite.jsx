@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import NoteCard from "../components/NoteCard";
-
-const API_URL = "http://localhost:5000/api/notes";
+import { BACKEND_URL } from "../../config";
 
 const Favourite = () => {
     const [favouriteNotes, setFavouriteNotes] = useState([]);
@@ -41,7 +40,7 @@ const Favourite = () => {
 
         try {
             const response = await axios.put(
-                `${API_URL}/${note._id}`,
+                `${BACKEND_URL}/api/notes/${note._id}`,
                 {
                     title: note.title,
                     content: note.content,
@@ -82,7 +81,7 @@ const Favourite = () => {
 
         try {
             const response = await axios.put(
-                `${API_URL}/${note._id}`,
+                `${BACKEND_URL}/api/notes/${note._id}`,
                 {
                     ...note,
                     isFavorite: !note.isFavorite
