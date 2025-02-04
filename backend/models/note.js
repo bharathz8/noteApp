@@ -5,8 +5,8 @@ const NoteSchema = new mongoose.Schema({
   title: { type: String, required: true },
   content: { type: String, required: true },
   audioUrl: { type: String, default: "" },
-  createdAt: { type: Date, default: Date.now },
   isFavorite: { type: Boolean, default: false },
-});
+},
+{timestamps: true});
 
 export default mongoose.model("Note", NoteSchema);
