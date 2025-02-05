@@ -18,7 +18,7 @@ const Home = () => {
             if (!token) return console.error("No token found, user is not authenticated.");
     
             try {
-                const response = await axios.get(`${BACKEND_URL}/api/notes`, {
+                const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/notes`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 setNotes(response.data);
@@ -40,7 +40,7 @@ const Home = () => {
         try {
             if (noteData._id) {
                 const response = await axios.put(
-                    `${BACKEND_URL}/api/notes/${noteData._id}`,
+                    `${import.meta.env.VITE_BACKEND_URL}/api/notes/${noteData._id}`,
                     { 
                         title: noteData.title, 
                         content: noteData.content,
@@ -56,7 +56,7 @@ const Home = () => {
                 setNotes(notes.map((note) => (note._id === noteData._id ? response.data : note)));
             } else {
                 const response = await axios.post(
-                    `${BACKEND_URL}/api/notes/create`,
+                    `${import.meta.env.VITE_BACKEND_URL}/api/notes/create`,
                     { 
                         title: noteData.title, 
                         content: noteData.content,
@@ -96,7 +96,7 @@ const Home = () => {
         }
 
         try {
-            await axios.delete(`${BACKEND_URL}/api/notes/${id}`, {
+            await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/notes/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setNotes(notes.filter((note) => note._id !== id));
@@ -114,7 +114,7 @@ const Home = () => {
 
         try {
             const response = await axios.put(
-                `${BACKEND_URL}/api/notes/${note._id}`,
+                `${import.meta.env.VITE_BACKEND_URL}/api/notes/${note._id}`,
                 { 
                     ...note,
                     isFavorite: !note.isFavorite 

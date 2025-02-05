@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import NoteCard from "../components/NoteCard";
-import { BACKEND_URL } from "../../config";
-
 const Favourite = () => {
     const [favouriteNotes, setFavouriteNotes] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -21,7 +19,7 @@ const Favourite = () => {
         }
 
         try {
-            const response = await axios.get(API_URL, {
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/notes/`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             // Filter notes to only show favorites
@@ -40,7 +38,7 @@ const Favourite = () => {
 
         try {
             const response = await axios.put(
-                `${BACKEND_URL}/api/notes/${note._id}`,
+                `${import.meta.env.VITE_BACKEND_URL}/api/notes/${note._id}`,
                 {
                     title: note.title,
                     content: note.content,
@@ -81,7 +79,7 @@ const Favourite = () => {
 
         try {
             const response = await axios.put(
-                `${BACKEND_URL}/api/notes/${note._id}`,
+                `${import.meta.env.VITE_BACKEND_URL}/api/notes/${note._id}`,
                 {
                     ...note,
                     isFavorite: !note.isFavorite

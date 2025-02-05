@@ -2,8 +2,6 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff, UserPlus } from "lucide-react";
-import { BACKEND_URL } from "../../config";
-
 const Signup = () => {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
@@ -15,7 +13,7 @@ const Signup = () => {
     
     try {
       const response = await axios.post(
-        `${BACKEND_URL}/api/auth/signup`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/auth/signup`,
         form,
         {
           headers: { "Content-Type": "application/json" },
